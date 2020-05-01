@@ -1,0 +1,43 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://postman-echo.com/post?hand=wave
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Sat, 02 May 2020 04:00:33 GMT
+      Etag:
+      - W/"175-CcWIcyxwsNgxeZ+CxlpuK7MAjWU"
+      Server:
+      - nginx
+      Set-Cookie:
+      - sails.sid=s%3AIERi0zbf0pCQ-VKbfh51zq-4kPo_oRGc.NJGq3vFpuJbjJLJwJYe9DIX5xBikBReu%2Bm%2BAkuG70r8;
+        Path=/; HttpOnly
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '251'
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: '{"args":{"hand":"wave"},"data":"","files":{},"form":{},"headers":{"x-forwarded-proto":"https","host":"postman-echo.com","content-length":"0","accept":"*/*","accept-encoding":"gzip;q=1.0,deflate;q=0.6,identity;q=0.3","content-type":"application/x-www-form-urlencoded","user-agent":"Ruby","x-forwarded-port":"443"},"json":null,"url":"https://postman-echo.com/post?hand=wave"}'
+    http_version: null
+  recorded_at: Sat, 02 May 2020 04:00:33 GMT
+recorded_with: VCR 5.1.0

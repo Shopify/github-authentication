@@ -1,0 +1,13 @@
+# frozen_string_literal: true
+
+require "test_helper"
+
+require "github/authentication"
+
+module Github
+  class AuthenticationTest < Minitest::Test
+    def test_that_it_has_a_version_number
+      refute_nil ::Github::Authentication::VERSION
+    end
+  end
+end
