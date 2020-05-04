@@ -20,7 +20,7 @@ module Github
 
           token = generator.generate
 
-          assert_equal '1991-01-01T05:49:12-05:00', token.expires_at.iso8601
+          assert_equal '1991-01-01T05:49:12+00:00', token.expires_at.iso8601
           assert_equal 'foo', token.to_s
         end
       end
