@@ -21,7 +21,7 @@ module Github
       end
 
       def test_from_json_returns_token_object
-        result = Token.from_json('{"token":"foo","expires_at":"1990-01-01T00:00:00-05:00"}')
+        result = Token.from_json('{"token":"foo","expires_at":"1990-01-01T00:00:00+00:00"}')
 
         assert_equal 'foo', result.to_s
         assert_equal Time.now, result.expires_at
@@ -60,13 +60,13 @@ module Github
       def test_inspect
         token = Token.new('foooooooooooof', Time.now)
 
-        assert_equal '#<Github::Authentication::Token @token=fooooooooo... @expires_at=1990-01-01 00:00:00 -0500>', token.inspect
+        assert_equal '#<Github::Authentication::Token @token=fooooooooo... @expires_at=1990-01-01 00:00:00 +0000>', token.inspect
       end
 
       def test_to_json
         token = Token.new('foo', Time.now)
 
-        assert_equal '{"token":"foo","expires_at":"1990-01-01T00:00:00-05:00"}', token.to_json
+        assert_equal '{"token":"foo","expires_at":"1990-01-01T00:00:00+00:00"}', token.to_json
       end
 
       def test_to_s_and_to_str
