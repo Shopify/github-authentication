@@ -1,6 +1,6 @@
 # Github::Authentication
 
-This gem allows you to authenticate with GitHub. Specifically, as an GitHub app.
+This gem allows you to authenticate with GitHub. Specifically, as a [GitHub app](https://developer.github.com/apps/building-github-apps/creating-a-github-app/).
 
 The app works well with the ActiveSupport::Cache, uses retries to mitigate GitHub flakiness, and is thread safe
 
