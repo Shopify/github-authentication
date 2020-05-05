@@ -56,6 +56,45 @@ Mostly for testing purposes you can provide a github token that gets retrieved.
 Github::Authentication::Generator::Personal.new(github_token: ENV['GITHUB_TOKEN'])
 ```
 
+## Example
+
+```ruby
+
+require "base64"
+
+module GitHub
+  APP_ID = "<APP_ID>"
+  INSTALLATION_ID = "<INSTALLATION_ID>"
+
+  class << self
+    def token
+      @token_provider ||= begin
+        if ENV['GITHUB_TOKEN']
+          storage = Github::Authentication::ObjectCache.new
+          generator = Github::Authentication::Generator::Personal.new(github_token: ENV['GITHUB_TOKEN'])
+        else
+          storage = ActiveSupport::Cache::RedisCacheStore.new
+          pem = Base64.decode64(ENV['GITHUB_PEM'])
+          generator = Github::Authentication::Generator::App.new(pem: pem, installation_id: INSTALLATION_ID,
+                                                                 app_id: APP_ID)
+        end
+        cache = Github::Authentication::Cache.new(storage: storage)
+        Github::Authentication::Provider.new(generator: generator, cache: cache)
+      end
+      @token_provider.token
+    end
+
+    def client
+      if ENV['GITHUB_TOKEN']
+        Octokit::Client.new(access_token: token)
+      else
+        Octokit::Client.new(bearer_token: token)
+      end
+    end
+  end
+end
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
