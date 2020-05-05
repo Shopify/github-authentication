@@ -25,7 +25,7 @@ module Github
           mu_synchronize do
             return @token if @token&.valid_for?(seconds_ttl)
 
-            if (@token = @cache.read)
+            if (token = @cache.read)
               return @token if @token.valid_for?(seconds_ttl)
             end
 

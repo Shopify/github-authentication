@@ -8,6 +8,8 @@ module Github
       attr_reader :expires_at
 
       def self.from_json(data)
+        return nil if data.nil?
+
         token, expires_at = JSON.parse(data).values_at('token', 'expires_at')
         new(token, Time.iso8601(expires_at))
       rescue JSON::ParserError
