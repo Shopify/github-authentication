@@ -86,9 +86,9 @@ module GitHub
 
     def client
       if ENV['GITHUB_TOKEN']
-        Octokit::Client.new(access_token: token)
+        Octokit::Client.new(access_token: token.to_s)
       else
-        Octokit::Client.new(bearer_token: token)
+        Octokit::Client.new(bearer_token: token.to_s)
       end
     end
   end
