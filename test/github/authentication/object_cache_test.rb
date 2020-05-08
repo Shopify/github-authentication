@@ -5,7 +5,7 @@ require 'github/authentication/object_cache'
 
 module Github
   module Authentication
-    class CacheTest < Minitest::Test
+    class ObjectCacheTest < Minitest::Test
       def setup
         Timecop.freeze("1990-01-01T00:00:00Z")
         @key = "github:authentication:foo"
@@ -45,7 +45,7 @@ module Github
         end
       end
 
-      def test_read_from_cache_is_not_expired
+      def test_read_from_cache_is_not_expired_2
         cache = ObjectCache.new
 
         cache.write('foo', 'bar')
