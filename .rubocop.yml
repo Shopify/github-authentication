@@ -1,0 +1,7 @@
+inherit_gem:
+  rubocop-shopify: rubocop.yml
+
+AllCops:
+  TargetRubyVersion: 2.6
+  CacheRootDirectory: tmp/rubocop
+  UseCache: true
