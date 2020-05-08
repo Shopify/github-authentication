@@ -19,8 +19,8 @@ jobs:
         uses: zcong1993/setup-timezone@master
         with:
           timezone: UTC
-      - name: Rubocop checks
-        uses: gimenete/rubocop-action@1.0
+      - name: Github Rubocop Action
+        uses: luizfonseca/github-actions-rubocop@1.5.5
       - name: Run Ruby tests
         run: | 
           gem install bundler
