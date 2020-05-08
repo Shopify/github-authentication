@@ -5,3 +5,14 @@ AllCops:
   TargetRubyVersion: 2.6
   CacheRootDirectory: tmp/rubocop
   UseCache: true
+
+Style/MethodCallWithArgsParentheses:
+  IgnoredMethods:
+    - require
+    - raise
+    - assert
+    - refute
+    - assert_equal
+    - refute_equal
+    - assert_nil
+    - refute_nil

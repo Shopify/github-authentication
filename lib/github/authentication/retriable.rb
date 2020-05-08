@@ -8,7 +8,7 @@ module Github
           previous_failure = nil
 
           begin
-            return_value = yield attempt, previous_failure
+            return_value = yield(attempt, previous_failure)
           rescue *exceptions => exception
             raise unless attempt < max_attempts
 

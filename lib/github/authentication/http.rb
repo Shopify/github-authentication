@@ -21,7 +21,7 @@ module Github
               http.start
             end
             request = Net::HTTP::Post.new(uri.request_uri)
-            yield request if block_given?
+            yield(request) if block_given?
             http.request(request)
           end
 
