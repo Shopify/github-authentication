@@ -27,7 +27,7 @@ module Github
         cache = ObjectCache.new
 
         cache.write('foo', 'bar', expires_in: 10)
-        Timecop.freeze(Time.now + 11*60) do
+        Timecop.freeze(Time.now + 11 * 60) do
           result = cache.read('foo')
 
           assert_nil result
@@ -38,7 +38,7 @@ module Github
         cache = ObjectCache.new
 
         cache.write('foo', 'bar', expires_in: 10)
-        Timecop.freeze(Time.now + 9*60) do
+        Timecop.freeze(Time.now + 9 * 60) do
           result = cache.read('foo')
 
           assert_equal 'bar', result
@@ -49,7 +49,7 @@ module Github
         cache = ObjectCache.new
 
         cache.write('foo', 'bar')
-        Timecop.freeze(Time.now + 100*60) do
+        Timecop.freeze(Time.now + 100 * 60) do
           result = cache.read('foo')
 
           assert_equal 'bar', result

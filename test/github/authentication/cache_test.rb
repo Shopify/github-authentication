@@ -27,7 +27,7 @@ module Github
       end
 
       def test_write_to_cache
-        storage = mock()
+        storage = mock
         storage.stubs(:write)
           .with(@key, '{"token":"foo","expires_at":"1990-01-01T00:00:00Z"}', expires_in: 0)
         cache = Cache.new(key: 'foo', storage: storage)
@@ -37,7 +37,7 @@ module Github
       end
 
       def test_clear_cache
-        storage = mock()
+        storage = mock
         storage.stubs(:delete).with(@key)
         cache = Cache.new(key: 'foo', storage: storage)
 

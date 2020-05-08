@@ -10,7 +10,7 @@ module Github
         VCR.use_cassette('make_http_call') do
           result = Http.post('https://postman-echo.com/post?hand=wave')
 
-          assert_equal({"hand"=>"wave"}, JSON.parse(result.body)['args'])
+          assert_equal({ "hand" => "wave" }, JSON.parse(result.body)['args'])
         end
       end
 

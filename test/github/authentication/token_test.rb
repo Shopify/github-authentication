@@ -28,39 +28,40 @@ module Github
       end
 
       def test_expires_in_returns_correct_number
-        token = Token.new('foo', Time.now.utc + 20*60)
+        token = Token.new('foo', Time.now + 20 * 60)
 
         assert_equal 20, token.expires_in
       end
 
       def test_expired_returns_true_when_expired
-        token = Token.new('foo', Time.now.utc + 3*60)
+        token = Token.new('foo', Time.now + 3 * 60)
 
         assert token.expired?
       end
 
       def test_expired_returns_false_when_not_expired
-        token = Token.new('foo', Time.now.utc + 10*60)
+        token = Token.new('foo', Time.now + 10 * 60)
 
         refute token.expired?
       end
 
       def test_valid_for_returns_false_when_invalid
-        token = Token.new('foo', Time.now.utc + 10*60)
+        token = Token.new('foo', Time.now + 10 * 60)
 
-        assert token.valid_for?(9*60)
+        assert token.valid_for?(9 * 60)
       end
 
       def test_valid_for_returns_true_when_valid
-        token = Token.new('foo', Time.now.utc + 10*60)
+        token = Token.new('foo', Time.now + 10 * 60)
 
-        refute token.valid_for?(11*60)
+        refute token.valid_for?(11 * 60)
       end
 
       def test_inspect
         token = Token.new('foooooooooooof', Time.now.utc)
 
-        assert_equal '#<Github::Authentication::Token @token=fooooooooo... @expires_at=1990-01-01 00:00:00 UTC>', token.inspect
+        assert_equal '#<Github::Authentication::Token @token=fooooooooo... ' \
+          '@expires_at=1990-01-01 00:00:00 UTC>', token.inspect
       end
 
       def test_to_json
