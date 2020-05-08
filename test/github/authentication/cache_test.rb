@@ -7,7 +7,7 @@ module Github
   module Authentication
     class CacheTest < Minitest::Test
       def setup
-        Timecop.freeze(Time.local(1990))
+        Timecop.freeze("1990-01-01T00:00:00Z")
         @key = "github:authentication:foo"
       end
 
@@ -17,7 +17,7 @@ module Github
 
       def test_read_from_cache
         storage = mock()
-        storage.stubs(:read).with(@key).returns('{"token":"foo","expires_at":"1990-01-01T00:00:00+00:00"}')
+        storage.stubs(:read).with(@key).returns('{"token":"foo","expires_at":"1990-01-01T00:00:00Z"}')
         cache = Cache.new(key: 'foo', storage: storage)
 
         token = cache.read
@@ -29,9 +29,9 @@ module Github
       def test_write_to_cache
         storage = mock()
         storage.stubs(:write)
-          .with(@key, '{"token":"foo","expires_at":"1990-01-01T00:00:00+00:00"}', expires_in: 0)
+          .with(@key, '{"token":"foo","expires_at":"1990-01-01T00:00:00Z"}', expires_in: 0)
         cache = Cache.new(key: 'foo', storage: storage)
-        token = Token.new('foo', Time.now)
+        token = Token.new('foo', Time.now.utc)
 
         cache.write(token)
       end

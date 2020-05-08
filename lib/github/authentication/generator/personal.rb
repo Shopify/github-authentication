@@ -11,7 +11,7 @@ module Github
         end
 
         def generate
-          a_year_from_now = Time.now + 31_556_952
+          a_year_from_now = Time.now.utc + 31_556_952
           Token.new(@github_token, a_year_from_now)
         end
       end

@@ -13,7 +13,7 @@ module Github
         return unless @cache.has_key?(key)
 
         options = @cache[key][:options]
-        if options.has_key?(:expires_at) && Time.now > options[:expires_at]
+        if options.has_key?(:expires_at) && Time.now.utc > options[:expires_at]
           @cache.delete(key)
           return nil
         end
@@ -23,7 +23,7 @@ module Github
 
       def write(key, value, options = {})
         if options.has_key?(:expires_in)
-          options[:expires_at] = Time.now + options[:expires_in] * 60
+          options[:expires_at] = Time.now.utc + options[:expires_in] * 60
         end
         @cache[key] = { value: value, options: options }
       end
