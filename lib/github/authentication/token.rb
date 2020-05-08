@@ -22,11 +22,11 @@ module Github
       end
 
       def expires_in
-        (@expires_at - Time.now).to_i / 60
+        (@expires_at - Time.now.utc).to_i / 60
       end
 
       def expired?(seconds_ttl: 300)
-        @expires_at < Time.now + seconds_ttl
+        @expires_at < Time.now.utc + seconds_ttl
       end
 
       def valid_for?(ttl)

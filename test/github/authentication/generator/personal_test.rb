@@ -8,7 +8,7 @@ module Github
     module Generator
       class PersonalTest < Minitest::Test
         def setup
-          Timecop.freeze(Time.local(1990))
+          Timecop.freeze("1990-01-01T00:00:00Z")
         end
 
         def after
@@ -20,7 +20,7 @@ module Github
 
           token = generator.generate
 
-          assert_equal '1991-01-01T05:49:12+00:00', token.expires_at.iso8601
+          assert_equal '1991-01-01T05:49:12Z', token.expires_at.iso8601
           assert_equal 'foo', token.to_s
         end
       end

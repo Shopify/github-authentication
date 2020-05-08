@@ -7,7 +7,7 @@ module Github
   module Authentication
     class CacheTest < Minitest::Test
       def setup
-        Timecop.freeze(Time.local(1990))
+        Timecop.freeze("1990-01-01T00:00:00Z")
         @key = "github:authentication:foo"
       end
 
