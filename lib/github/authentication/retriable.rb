@@ -1,3 +1,4 @@
+# typed: true
 # frozen_string_literal: true
 
 module Github
@@ -10,7 +11,7 @@ module Github
           begin
             return_value = yield attempt, previous_failure
           rescue *exceptions => exception
-            raise unless attempt < max_attempts
+            Kernel.raise unless attempt < max_attempts
 
             sleep_after_attempt(
               attempt: attempt,
@@ -43,7 +44,7 @@ module Github
         def calculate_exponential_backoff(attempt:, base_sleep_time:)
           # Double the max sleep time for every attempt (exponential backoff).
           # Randomize sleep time for more optimal request distribution.
-          lower_bound = Float(base_sleep_time)
+          lower_bound = Kernel.Float(base_sleep_time)
           upper_bound = lower_bound * (2 << (attempt - 2))
           Kernel.rand(lower_bound..upper_bound)
         end
