@@ -19,7 +19,7 @@ module Github
         @cache = cache
       end
 
-      def token(seconds_ttl: 5*60)
+      def token(seconds_ttl: 5 * 60)
         return @token if @token&.valid_for?(seconds_ttl)
 
         with_retries(TokenGeneratorError) do
