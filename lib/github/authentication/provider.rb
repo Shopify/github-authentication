@@ -14,6 +14,7 @@ module Github
 
       def initialize(generator:, cache:)
         super()
+        @token = nil
         @generator = generator
         @cache = cache
       end
