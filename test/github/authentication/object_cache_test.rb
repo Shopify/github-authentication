@@ -45,7 +45,7 @@ module Github
         end
       end
 
-      def test_read_from_cache_is_not_expired_2
+      def test_read_from_cache_is_never_expired
         cache = ObjectCache.new
 
         cache.write('foo', 'bar')
@@ -58,4 +58,3 @@ module Github
     end
   end
 end
-
