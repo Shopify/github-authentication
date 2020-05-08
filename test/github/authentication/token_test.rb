@@ -60,7 +60,8 @@ module Github
       def test_inspect
         token = Token.new('foooooooooooof', Time.now.utc)
 
-        assert_equal '#<Github::Authentication::Token @token=fooooooooo... @expires_at=1990-01-01 00:00:00 UTC>', token.inspect
+        assert_equal '#<Github::Authentication::Token @token=fooooooooo... ' \
+          '@expires_at=1990-01-01 00:00:00 UTC>', token.inspect
       end
 
       def test_to_json
