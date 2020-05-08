@@ -19,6 +19,11 @@ jobs:
         uses: zcong1993/setup-timezone@master
         with:
           timezone: UTC
+      - name: Lint Ruby
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+          bundle exec rubocop
       - name: Run Ruby tests
         run: | 
           gem install bundler

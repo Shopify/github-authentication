@@ -16,7 +16,7 @@ module Github
       end
 
       def test_read_from_cache
-        storage = mock()
+        storage = mock
         storage.stubs(:read).with(@key).returns('{"token":"foo","expires_at":"1990-01-01T00:00:00Z"}')
         cache = Cache.new(key: 'foo', storage: storage)
 
