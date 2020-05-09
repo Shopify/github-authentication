@@ -16,3 +16,5 @@ Style/MethodCallWithArgsParentheses:
     - refute_equal
     - assert_nil
     - refute_nil
+    - assert_kind_of
+    - refute_kind_of
