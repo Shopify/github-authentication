@@ -37,9 +37,9 @@ module Github
 
       def test_token_not_present_generates_invalid_token_tries_again
         valid_token = mock
-        valid_token.stubs(:valid_for?).returns(false)
+        valid_token.stubs(:valid_for?).returns(true)
         invalid_token = mock
-        invalid_token.stubs(:valid_for?).returns(true)
+        invalid_token.stubs(:valid_for?).returns(false)
         generator = mock
         generator.stubs(:generate).returns(invalid_token).then.returns(valid_token)
         cache = mock
@@ -48,7 +48,6 @@ module Github
         provider = Provider.new(generator: generator, cache: cache)
 
         result = provider.token
-
         assert result.valid_for?
       end
 
