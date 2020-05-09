@@ -13,21 +13,20 @@ module Github
 
         def post(url)
           uri = URI.parse(url)
-          http = nil
+          with_retries(SystemCallError, Timeout::Error) do
+            http = Net::HTTP.new(uri.host, uri.port)
+            http.use_ssl = true
+            http.start
+            begin
 
-          result = with_retries(SystemCallError, Timeout::Error) do
-            unless http
-              http = Net::HTTP.new(uri.host, uri.port)
-              http.use_ssl = true
-              http.start
+              request = Net::HTTP::Post.new(uri.request_uri)
+              yield(request) if block_given?
+
+              http.request(request)
+            ensure
+              http.finish
             end
-            request = Net::HTTP::Post.new(uri.request_uri)
-            yield(request) if block_given?
-            http.request(request)
           end
-
-          http&.finish
-          result
         end
       end
     end
