@@ -23,11 +23,11 @@ jobs:
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
-          bundle exec rubocop
+          bin/rubocop
       - name: Run Ruby tests
-        run: | 
+        run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
-          bundle exec rake test
+          bin/rake test
         env:
           SUITE: ruby
