@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'net/http'
+require 'timeout'
 
 require 'github/authentication/retriable'
 
@@ -14,7 +15,7 @@ module Github
           uri = URI.parse(url)
           http = nil
 
-          result = with_retries(Errno::ECONNREFUSED, Net::ReadTimeout) do
+          result = with_retries(SystemCallError, Timeout::Error) do
             unless http
               http = Net::HTTP.new(uri.host, uri.port)
               http.use_ssl = true
