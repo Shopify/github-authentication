@@ -23,6 +23,27 @@ module Github
           assert_equal('application/json', JSON.parse(result.body).dig('headers', 'content-type'))
         end
       end
+
+      def test_retries_http_calls
+        bad_http = mock_net_http
+        good_http = mock_net_http
+
+        bad_http.expects(:request).raises(Errno::ECONNREFUSED)
+        good_http.expects(:request).returns(Net::HTTPOK.new('1.1', '200', 'OK'))
+
+        Net::HTTP.stubs(:new).with('example.com', 443).returns(bad_http).then.returns(good_http)
+        result = Http.post('https://example.com/foo')
+        assert_kind_of Net::HTTPOK, result
+      end
+
+      private
+
+      def mock_net_http
+        http = Net::HTTP.new('example.com', 443)
+        http.stubs(:start)
+        http.stubs(:finish)
+        http
+      end
     end
   end
 end
