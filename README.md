@@ -32,6 +32,7 @@ generator = Github::Authentication::Generator::App.new(pem: ENV['GITHUB_PEM'],
 provider = Github::Authentication::Provider.new(generator: generator, cache: cache)
 
 provider.token
+provider.reset_token
 ```
 
 ### Cache
