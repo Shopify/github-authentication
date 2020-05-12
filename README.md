@@ -23,7 +23,7 @@ Or install it yourself as:
 ## Usage
 
 ```ruby
-require 'github-authentication'
+require 'github/authentication'
 
 cache = Github::Authentication::Cache.new(storage: Github::Authentication::ObjectCache.new)
 generator = Github::Authentication::Generator::App.new(pem: ENV['GITHUB_PEM'],
