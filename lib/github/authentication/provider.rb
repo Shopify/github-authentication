@@ -42,6 +42,11 @@ module Github
         end
       end
 
+      def reset_token
+        @token = nil
+        @cache.clear
+      end
+
       # prevent credential leak
       def inspect
         "#<#{self.class.name}>"

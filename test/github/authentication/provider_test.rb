@@ -6,6 +6,20 @@ require "github/authentication/provider"
 module Github
   module Authentication
     class ProviderTest < Minitest::Test
+      def test_reset_token_resets
+        generator = mock
+        token = mock
+        token.stubs(:valid_for?).returns(true)
+        cache = mock
+        cache.stubs(:read).returns(token).twice
+        cache.stubs(:clear).once
+        provider = Provider.new(generator: generator, cache: cache)
+
+        provider.token
+        provider.reset_token
+        provider.token
+      end
+
       def test_token_valid_return_token
         generator = mock
         token = mock
