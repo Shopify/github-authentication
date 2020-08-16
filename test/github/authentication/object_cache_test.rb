@@ -26,7 +26,7 @@ module Github
       def test_read_from_cache_returns_nil_if_expired
         cache = ObjectCache.new
 
-        cache.write('foo', 'bar', expires_in: 10)
+        cache.write('foo', 'bar', expires_in: 10 * 60) # 10 minutes
         Timecop.freeze(Time.now + 11 * 60) do
           result = cache.read('foo')
 
@@ -37,7 +37,7 @@ module Github
       def test_read_from_cache_is_not_expired
         cache = ObjectCache.new
 
-        cache.write('foo', 'bar', expires_in: 10)
+        cache.write('foo', 'bar', expires_in: 10 * 60) # 10 minutes
         Timecop.freeze(Time.now + 9 * 60) do
           result = cache.read('foo')
 
