@@ -28,9 +28,9 @@ module Github
       end
 
       def test_expires_in_returns_correct_number
-        token = Token.new('foo', Time.now + 20 * 60)
+        token = Token.new('foo', Time.now + 10 * 60) # 10 minutes
 
-        assert_equal 20, token.expires_in
+        assert_equal 600, token.expires_in
       end
 
       def test_expired_returns_true_when_expired

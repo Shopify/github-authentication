@@ -22,7 +22,7 @@ module Github
       end
 
       def expires_in
-        (@expires_at - Time.now.utc).to_i / 60
+        (@expires_at - Time.now.utc).to_i
       end
 
       def expired?(seconds_ttl: 300)

@@ -23,7 +23,7 @@ module Github
 
       def write(key, value, options = {})
         if options.key?(:expires_in)
-          options[:expires_at] = Time.now.utc + options[:expires_in] * 60
+          options[:expires_at] = Time.now.utc + options[:expires_in]
         end
         @cache[key] = { value: value, options: options }
       end
