@@ -2,15 +2,15 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "github/authentication/version"
+require "github_authentication/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "github-authentication"
-  spec.version       = Github::Authentication::VERSION
+  spec.version       = GithubAuthentication::VERSION
   spec.authors       = ["Frederik Dudzik"]
   spec.email         = ["frederik.dudzik@shopify.com"]
 
-  spec.summary       = "GitHub authetication"
+  spec.summary       = "GitHub Authetication"
   spec.description   = "Authenticate with GitHub"
   spec.homepage      = "https://github.com/Shopify/github-authentication"
   spec.license       = "MIT"
