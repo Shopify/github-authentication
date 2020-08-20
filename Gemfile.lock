@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    github-authentication (0.1.2)
+    github-authentication (0.2.0)
       jwt (~> 2.2)
 
 GEM

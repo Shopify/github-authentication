@@ -1,4 +1,4 @@
-# Github::Authentication
+# GithubAuthentication
 
 This gem allows you to authenticate with GitHub. Specifically, as a [GitHub app](https://developer.github.com/apps/building-github-apps/creating-a-github-app/).
 
@@ -23,13 +23,13 @@ Or install it yourself as:
 ## Usage
 
 ```ruby
-require 'github/authentication'
+require 'github_authentication'
 
-cache = Github::Authentication::Cache.new(storage: Github::Authentication::ObjectCache.new)
-generator = Github::Authentication::Generator::App.new(pem: ENV['GITHUB_PEM'],
+cache = GithubAuthentication::Cache.new(storage: GithubAuthentication::ObjectCache.new)
+generator = GithubAuthentication::Generator::App.new(pem: ENV['GITHUB_PEM'],
                                           installation_id: ENV['GITHUB_INSTALLATION_ID'],
                                           app_id: ENV['GITHUB_APP_ID'])
-provider = Github::Authentication::Provider.new(generator: generator, cache: cache)
+provider = GithubAuthentication::Provider.new(generator: generator, cache: cache)
 
 provider.token
 provider.reset_token
@@ -38,14 +38,14 @@ provider.reset_token
 ### Cache
 
 The cache takes a storage argument. You can pass an instance of an `ActiveSupport::Cache` implementation or use the provided 
-`Github::Authentication::ObjectCache` if you are using it in a script.
+`GithubAuthentication::ObjectCache` if you are using it in a script.
 
 ### Generator::App
 
 Generates a token for a GitHub app.
 
 ```ruby
-Github::Authentication::Generator::App.new(pem: ENV['GITHUB_PEM'],
+GithubAuthentication::Generator::App.new(pem: ENV['GITHUB_PEM'],
                                           installation_id: ENV['GITHUB_INSTALLATION_ID'],
                                           app_id: ENV['GITHUB_APP_ID'])
 ```
@@ -54,7 +54,7 @@ Github::Authentication::Generator::App.new(pem: ENV['GITHUB_PEM'],
 
 Mostly for testing purposes you can provide a github token that gets retrieved.
 ```ruby
-Github::Authentication::Generator::Personal.new(github_token: ENV['GITHUB_TOKEN'])
+GithubAuthentication::Generator::Personal.new(github_token: ENV['GITHUB_TOKEN'])
 ```
 
 ## Example
@@ -71,16 +71,16 @@ module GitHub
     def token
       @token_provider ||= begin
         if ENV['GITHUB_TOKEN']
-          storage = Github::Authentication::ObjectCache.new
-          generator = Github::Authentication::Generator::Personal.new(github_token: ENV['GITHUB_TOKEN'])
+          storage = GithubAuthentication::ObjectCache.new
+          generator = GithubAuthentication::Generator::Personal.new(github_token: ENV['GITHUB_TOKEN'])
         else
           storage = ActiveSupport::Cache::RedisCacheStore.new
           pem = Base64.decode64(ENV['GITHUB_PEM'])
-          generator = Github::Authentication::Generator::App.new(pem: pem, installation_id: INSTALLATION_ID,
+          generator = GithubAuthentication::Generator::App.new(pem: pem, installation_id: INSTALLATION_ID,
                                                                  app_id: APP_ID)
         end
-        cache = Github::Authentication::Cache.new(storage: storage)
-        Github::Authentication::Provider.new(generator: generator, cache: cache)
+        cache = GithubAuthentication::Cache.new(storage: storage)
+        GithubAuthentication::Provider.new(generator: generator, cache: cache)
       end
       @token_provider.token
     end
