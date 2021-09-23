@@ -7,12 +7,21 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    activesupport (6.1.4.1)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (>= 1.6, < 2)
+      minitest (>= 5.1)
+      tzinfo (~> 2.0)
+      zeitwerk (~> 2.3)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.0)
+    concurrent-ruby (1.1.9)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     hashdiff (1.0.1)
+    i18n (1.8.10)
+      concurrent-ruby (~> 1.0)
     jaro_winkler (1.5.4)
     jwt (2.2.1)
     minitest (5.14.0)
@@ -37,18 +46,21 @@ GEM
     ruby-progressbar (1.10.1)
     safe_yaml (1.0.5)
     timecop (0.9.1)
+    tzinfo (2.0.4)
+      concurrent-ruby (~> 1.0)
     unicode-display_width (1.7.0)
     vcr (5.1.0)
     webmock (3.8.3)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
+    zeitwerk (2.4.2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 1.17)
+  activesupport
   github-authentication!
   minitest (~> 5.0)
   mocha (~> 1.11)
