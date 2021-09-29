@@ -6,6 +6,7 @@ require "minitest/autorun"
 
 require 'timecop'
 require 'mocha/minitest'
+require 'webmock/minitest'
 require 'vcr'
 
 VCR.configure do |config|
