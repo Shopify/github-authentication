@@ -6,6 +6,8 @@ require "active_support/core_ext/numeric"
 
 module GithubAuthentication
   class GitCredentialHelperTest < Minitest::Test
+    include GithubAPIHelper
+
     def setup
       @pem = File.read('test/fixtures/dummy_private_key.pem')
       @app_id = rand(1000)
@@ -43,15 +45,6 @@ module GithubAuthentication
     end
 
     private
-
-    def stub_create_installation_access_token(token: SecureRandom.hex)
-      stub_request(:post, "https://api.github.com/app/installations/#{@installation_id}/access_tokens")
-        .to_return(
-          headers: { 'Content-Type' => 'application/json' },
-          body: { token: token, expires_at: 1.hour.from_now.iso8601 }.to_json,
-          status: 201,
-        )
-    end
 
     def stub_stdin(protocol: 'https', host: 'github.com', path: nil)
       @stdin.write("protocol=#{protocol}\nhost=#{host}\n")
