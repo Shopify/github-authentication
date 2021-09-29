@@ -24,6 +24,11 @@ module GithubAuthentication
           request["Accept"] = "application/vnd.github.machine-man-preview+json"
           request
         end
+
+        unless response.is_a?(Net::HTTPSuccess)
+          raise TokenGeneratorError, "[#{response.code}] #{response.body}"
+        end
+
         Token.from_json(response.body)
       end
 
