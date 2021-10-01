@@ -96,6 +96,12 @@ module GitHub
 end
 ```
 
+## Git credential helper
+
+This gem also ships with a [git credential helper][0] to authenticate git
+operations as an App. See [this doc](docs/github_credential_helper.md) for
+detail on setup and configuration.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
@@ -110,3 +116,4 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/Shopif
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
+[0]: https://git-scm.com/docs/gitcredentials
