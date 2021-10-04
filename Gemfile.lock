@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    github-authentication (0.2.0)
+    github-authentication (0.2.1)
       jwt (~> 2.2)
 
 GEM
@@ -23,7 +23,7 @@ GEM
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     jaro_winkler (1.5.4)
-    jwt (2.2.1)
+    jwt (2.2.3)
     minitest (5.14.0)
     mocha (1.11.2)
     parallel (1.19.1)
