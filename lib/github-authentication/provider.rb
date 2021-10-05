@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require "mutex_m.rb"
 
-require 'github_authentication/retriable'
+require 'github-authentication/retriable'
 
 module GithubAuthentication
   class Provider

@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-require "github_authentication"
+require "github-authentication"
 
 class AuthenticationTest < Minitest::Test
   def test_that_it_has_a_version_number

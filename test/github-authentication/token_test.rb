@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'test_helper'
 
-require 'github_authentication/token'
+require 'github-authentication/token'
 
 module GithubAuthentication
   class TokenTest < Minitest::Test

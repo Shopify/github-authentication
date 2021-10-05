@@ -4,7 +4,7 @@ require 'jwt'
 require "uri"
 require 'openssl'
 
-require "github_authentication/http"
+require "github-authentication/http"
 
 module GithubAuthentication
   module Generator

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require "github_authentication/generator/app"
-require "github_authentication/generator/personal"
+require "github-authentication/generator/app"
+require "github-authentication/generator/personal"
 
 module GithubAuthentication
   module Generator

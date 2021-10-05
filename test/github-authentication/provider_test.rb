@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require "test_helper"
 
-require "github_authentication/provider"
+require "github-authentication/provider"
 
 module GithubAuthentication
   class ProviderTest < Minitest::Test

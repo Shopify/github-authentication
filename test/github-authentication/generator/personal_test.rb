@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'test_helper'
 
-require "github_authentication/generator/personal"
+require "github-authentication/generator/personal"
 
 module GithubAuthentication
   module Generator

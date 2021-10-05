@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'test_helper'
 
-require "github_authentication/http"
+require "github-authentication/http"
 
 module GithubAuthentication
   class HttpTest < Minitest::Test

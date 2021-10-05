@@ -2,7 +2,7 @@
 # # frozen_string_literal: true
 require 'test_helper'
 
-require "github_authentication/retriable"
+require "github-authentication/retriable"
 
 module GithubAuthentication
   class RetriableTest < Minitest::Test

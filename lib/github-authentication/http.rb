@@ -3,7 +3,7 @@
 require 'net/http'
 require 'timeout'
 
-require 'github_authentication/retriable'
+require 'github-authentication/retriable'
 
 module GithubAuthentication
   module Http

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'test_helper'
 
-require 'github_authentication/cache'
+require 'github-authentication/cache'
 
 module GithubAuthentication
   class CacheTest < Minitest::Test
