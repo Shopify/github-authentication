@@ -18,3 +18,7 @@ Style/MethodCallWithArgsParentheses:
     - refute_nil
     - assert_kind_of
     - refute_kind_of
+
+Naming/FileName:
+  Exclude:
+    - lib/github-authentication.rb
