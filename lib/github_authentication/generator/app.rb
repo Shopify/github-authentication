@@ -21,7 +21,7 @@ module GithubAuthentication
         url = "https://api.github.com/app/installations/#{installation_id}/access_tokens"
         response = Http.post(url) do |request|
           request["Authorization"] = "Bearer #{jwt}"
-          request["Accept"] = "application/vnd.github.machine-man-preview+json"
+          request["Accept"] = "application/vnd.github+json"
           request
         end
 
