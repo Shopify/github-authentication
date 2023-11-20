@@ -37,12 +37,12 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency("jwt", "~> 2.2")
 
-  spec.add_development_dependency("rake", "~> 12.3")
+  spec.add_development_dependency("rake", "~> 13")
   spec.add_development_dependency("minitest", "~> 5.0")
   spec.add_development_dependency("timecop", "~> 0.9")
-  spec.add_development_dependency("mocha", "~> 1.11")
+  spec.add_development_dependency("mocha", "~> 2")
   spec.add_development_dependency("webmock", "~> 3.8")
-  spec.add_development_dependency("vcr", "~> 5.1")
+  spec.add_development_dependency("vcr", "~> 6.2")
   spec.add_development_dependency("rubocop", "~> 0.52")
   spec.add_development_dependency("rubocop-shopify")
   spec.add_development_dependency("activesupport")

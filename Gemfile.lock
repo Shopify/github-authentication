@@ -7,69 +7,84 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (6.1.4.1)
+    activesupport (7.1.2)
+      base64
+      bigdecimal
       concurrent-ruby (~> 1.0, >= 1.0.2)
+      connection_pool (>= 2.2.5)
+      drb
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
+      mutex_m
       tzinfo (~> 2.0)
-      zeitwerk (~> 2.3)
-    addressable (2.8.0)
-      public_suffix (>= 2.0.2, < 5.0)
-    ast (2.4.0)
-    concurrent-ruby (1.1.9)
-    crack (0.4.3)
-      safe_yaml (~> 1.0.0)
-    hashdiff (1.0.1)
-    i18n (1.8.10)
-      concurrent-ruby (~> 1.0)
-    jaro_winkler (1.5.4)
-    jwt (2.3.0)
-    minitest (5.14.0)
-    mocha (1.11.2)
-    parallel (1.19.1)
-    parser (2.7.1.2)
-      ast (~> 2.4.0)
-    public_suffix (4.0.6)
-    rainbow (3.0.0)
-    rake (12.3.3)
-    rexml (3.2.5)
-    rubocop (0.82.0)
-      jaro_winkler (~> 1.5.1)
-      parallel (~> 1.10)
-      parser (>= 2.7.0.1)
-      rainbow (>= 2.2.2, < 4.0)
+    addressable (2.8.5)
+      public_suffix (>= 2.0.2, < 6.0)
+    ast (2.4.2)
+    base64 (0.2.0)
+    bigdecimal (3.1.4)
+    concurrent-ruby (1.2.2)
+    connection_pool (2.4.1)
+    crack (0.4.5)
       rexml
+    drb (2.2.0)
+      ruby2_keywords
+    hashdiff (1.0.1)
+    i18n (1.14.1)
+      concurrent-ruby (~> 1.0)
+    jwt (2.7.1)
+    minitest (5.20.0)
+    mocha (2.1.0)
+      ruby2_keywords (>= 0.0.5)
+    mutex_m (0.2.0)
+    parallel (1.23.0)
+    parser (3.2.2.4)
+      ast (~> 2.4.1)
+      racc
+    public_suffix (5.0.4)
+    racc (1.7.3)
+    rainbow (3.1.1)
+    rake (13.1.0)
+    regexp_parser (2.8.2)
+    rexml (3.2.6)
+    rubocop (0.93.1)
+      parallel (~> 1.10)
+      parser (>= 2.7.1.5)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8)
+      rexml
+      rubocop-ast (>= 0.6.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-shopify (1.0.2)
-      rubocop (~> 0.82.0)
-    ruby-progressbar (1.10.1)
-    safe_yaml (1.0.5)
-    timecop (0.9.1)
-    tzinfo (2.0.4)
+    rubocop-ast (1.30.0)
+      parser (>= 3.2.1.0)
+    rubocop-shopify (1.0.6)
+      rubocop (>= 0.92, < 0.94)
+    ruby-progressbar (1.13.0)
+    ruby2_keywords (0.0.5)
+    timecop (0.9.8)
+    tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    unicode-display_width (1.7.0)
-    vcr (5.1.0)
-    webmock (3.8.3)
-      addressable (>= 2.3.6)
+    unicode-display_width (1.8.0)
+    vcr (6.2.0)
+    webmock (3.19.1)
+      addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
-    zeitwerk (2.4.2)
 
 PLATFORMS
-  ruby
+  arm64-darwin-22
 
 DEPENDENCIES
   activesupport
   github-authentication!
   minitest (~> 5.0)
-  mocha (~> 1.11)
-  rake (~> 12.3)
+  mocha (~> 2)
+  rake (~> 13)
   rubocop (~> 0.52)
   rubocop-shopify
   timecop (~> 0.9)
-  vcr (~> 5.1)
+  vcr (~> 6.2)
   webmock (~> 3.8)
 
 BUNDLED WITH
-   2.2.22
+   2.4.21
