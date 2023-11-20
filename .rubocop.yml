@@ -2,8 +2,8 @@ inherit_gem:
   rubocop-shopify: rubocop.yml
 
 AllCops:
-  TargetRubyVersion: 2.6
-  CacheRootDirectory: tmp/rubocop
+  TargetRubyVersion: 2.7
+  CacheRootDirectory: tmp/rubocop-cache
   UseCache: true
 
 Style/MethodCallWithArgsParentheses:
@@ -18,6 +18,8 @@ Style/MethodCallWithArgsParentheses:
     - refute_nil
     - assert_kind_of
     - refute_kind_of
+    - assert_predicate
+    - refute_predicate
 
 Naming/FileName:
   Exclude:
