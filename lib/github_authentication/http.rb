@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'net/http'
-require 'timeout'
+require "net/http"
+require "timeout"
 
-require 'github_authentication/retriable'
+require "github_authentication/retriable"
 
 module GithubAuthentication
   module Http
@@ -17,7 +17,6 @@ module GithubAuthentication
           http.use_ssl = true
           http.start
           begin
-
             request = Net::HTTP::Post.new(uri.request_uri)
             yield(request) if block_given?
 

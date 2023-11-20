@@ -9,12 +9,12 @@ module GithubAuthentication
       begin
         return_value = yield(attempt, previous_failure)
       rescue *exceptions => exception
-        raise unless attempt < max_attempts
+        raise if attempt >= max_attempts
 
         sleep_after_attempt(
           attempt: attempt,
           base_sleep_time: sleep_between_attempts,
-          exponential_backoff: exponential_backoff
+          exponential_backoff: exponential_backoff,
         )
 
         attempt += 1
@@ -28,7 +28,7 @@ module GithubAuthentication
     private
 
     def sleep_after_attempt(attempt:, base_sleep_time:, exponential_backoff:)
-      return unless base_sleep_time > 0
+      return if base_sleep_time <= 0
 
       time_to_sleep = if exponential_backoff
         calculate_exponential_backoff(attempt: attempt, base_sleep_time: base_sleep_time)

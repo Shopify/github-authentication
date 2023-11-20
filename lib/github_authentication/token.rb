@@ -1,18 +1,20 @@
 # frozen_string_literal: true
 
-require 'json'
+require "json"
 
 module GithubAuthentication
   class Token
     attr_reader :expires_at
 
-    def self.from_json(data)
-      return nil if data.nil?
+    class << self
+      def from_json(data)
+        return if data.nil?
 
-      token, expires_at = JSON.parse(data).values_at('token', 'expires_at')
-      new(token, Time.iso8601(expires_at))
-    rescue JSON::ParserError
-      nil
+        token, expires_at = JSON.parse(data).values_at("token", "expires_at")
+        new(token, Time.iso8601(expires_at))
+      rescue JSON::ParserError
+        nil
+      end
     end
 
     def initialize(token, expires_at)

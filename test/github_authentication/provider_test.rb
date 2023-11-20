@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "test_helper"
 
 require "github_authentication/provider"
@@ -69,7 +70,7 @@ module GithubAuthentication
 
       result = provider.inspect
 
-      assert_equal '#<GithubAuthentication::Provider>', result
+      assert_equal "#<GithubAuthentication::Provider>", result
     end
   end
 end

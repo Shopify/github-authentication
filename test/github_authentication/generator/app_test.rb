@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-require 'test_helper'
+
+require "test_helper"
 
 module GithubAuthentication
   module Generator
@@ -7,7 +8,7 @@ module GithubAuthentication
       include GithubAPIHelper
 
       def setup
-        @pem = File.read('test/fixtures/dummy_private_key.pem')
+        @pem = File.read("test/fixtures/dummy_private_key.pem")
         @app_id = rand(1000)
         @installation_id = rand(10000)
       end
@@ -20,11 +21,11 @@ module GithubAuthentication
         )
 
         Timecop.freeze do
-          stub_create_installation_access_token(token: 's3cret')
+          stub_create_installation_access_token(token: "s3cret")
           token = generator.generate
 
           assert_equal 1.hour.from_now.iso8601, token.expires_at.iso8601
-          assert_equal 's3cret', token.to_s
+          assert_equal "s3cret", token.to_s
         end
       end
 

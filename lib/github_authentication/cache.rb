@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require 'github_authentication/token'
+require "github_authentication/token"
 
 module GithubAuthentication
   class Cache
     # storage = ActiveSupport::Cache
-    def initialize(storage:, key: '')
+    def initialize(storage:, key: "")
       @storage = storage
       @key = "github:authentication:#{key}"
     end

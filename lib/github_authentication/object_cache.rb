@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'github_authentication/token'
+require "github_authentication/token"
 
 module GithubAuthentication
   class ObjectCache
@@ -14,7 +14,7 @@ module GithubAuthentication
       options = @cache[key][:options]
       if options.key?(:expires_at) && Time.now.utc > options[:expires_at]
         @cache.delete(key)
-        return nil
+        return
       end
 
       @cache[key][:value]

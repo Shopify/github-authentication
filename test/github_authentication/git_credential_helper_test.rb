@@ -1,6 +1,7 @@
 # frozen_string_literal: true
-require 'test_helper'
-require 'securerandom'
+
+require "test_helper"
+require "securerandom"
 require "active_support"
 require "active_support/core_ext/numeric"
 
@@ -9,7 +10,7 @@ module GithubAuthentication
     include GithubAPIHelper
 
     def setup
-      @pem = File.read('test/fixtures/dummy_private_key.pem')
+      @pem = File.read("test/fixtures/dummy_private_key.pem")
       @app_id = rand(1000)
       @installation_id = rand(10000)
       @stdin = StringIO.new
@@ -18,7 +19,7 @@ module GithubAuthentication
         pem: @pem,
         app_id: @app_id,
         installation_id: @installation_id,
-        stdin: @stdin
+        stdin: @stdin,
       )
     end
 
@@ -34,7 +35,7 @@ module GithubAuthentication
     end
 
     def test_handle_get_errors_on_unknown_host
-      stub_stdin(host: 'not.github.com')
+      stub_stdin(host: "not.github.com")
 
       out, err = capture_io do
         assert_predicate @helper.handle_get, :nonzero?
@@ -46,7 +47,7 @@ module GithubAuthentication
 
     private
 
-    def stub_stdin(protocol: 'https', host: 'github.com', path: nil)
+    def stub_stdin(protocol: "https", host: "github.com", path: nil)
       @stdin.write("protocol=#{protocol}\nhost=#{host}\n")
       @stdin.write("path=#{path}\n") unless path.nil?
 

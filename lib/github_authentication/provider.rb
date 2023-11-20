@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-require 'github_authentication/retriable'
+
+require "github_authentication/retriable"
 
 module GithubAuthentication
   class Provider

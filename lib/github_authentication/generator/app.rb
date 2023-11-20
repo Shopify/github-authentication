@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'jwt'
+require "jwt"
 require "uri"
-require 'openssl'
+require "openssl"
 
 require "github_authentication/http"
 

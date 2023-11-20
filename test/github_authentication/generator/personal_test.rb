@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-require 'test_helper'
+
+require "test_helper"
 
 require "github_authentication/generator/personal"
 
@@ -15,12 +16,12 @@ module GithubAuthentication
       end
 
       def test_generate
-        generator = Personal.new(github_token: 'foo')
+        generator = Personal.new(github_token: "foo")
 
         token = generator.generate
 
-        assert_equal '1991-01-01T05:49:12Z', token.expires_at.iso8601
-        assert_equal 'foo', token.to_s
+        assert_equal "1991-01-01T05:49:12Z", token.expires_at.iso8601
+        assert_equal "foo", token.to_s
       end
     end
   end

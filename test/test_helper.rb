@@ -1,15 +1,16 @@
 # frozen_string_literal: true
+
 $LOAD_PATH.unshift(File.expand_path("../../lib", __FILE__))
 require "github_authentication/provider"
 
 require "minitest/autorun"
 
-require 'timecop'
-require 'mocha/minitest'
-require 'webmock/minitest'
-require 'vcr'
+require "timecop"
+require "mocha/minitest"
+require "webmock/minitest"
+require "vcr"
 
-require_relative('./support/github_api_helper')
+require_relative("./support/github_api_helper")
 
 VCR.configure do |config|
   config.cassette_library_dir = "test/fixtures/vcr_cassettes"

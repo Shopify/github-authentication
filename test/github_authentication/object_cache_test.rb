@@ -1,7 +1,8 @@
 # frozen_string_literal: true
-require 'test_helper'
 
-require 'github_authentication/object_cache'
+require "test_helper"
+
+require "github_authentication/object_cache"
 
 module GithubAuthentication
   class ObjectCacheTest < Minitest::Test
@@ -17,7 +18,7 @@ module GithubAuthentication
     def test_read_from_cache_returns_nil_if_not_written
       cache = ObjectCache.new
 
-      result = cache.read('foo')
+      result = cache.read("foo")
 
       assert_nil result
     end
@@ -25,9 +26,9 @@ module GithubAuthentication
     def test_read_from_cache_returns_nil_if_expired
       cache = ObjectCache.new
 
-      cache.write('foo', 'bar', expires_in: 10 * 60) # 10 minutes
+      cache.write("foo", "bar", expires_in: 10 * 60) # 10 minutes
       Timecop.freeze(Time.now + 11 * 60) do
-        result = cache.read('foo')
+        result = cache.read("foo")
 
         assert_nil result
       end
@@ -36,22 +37,22 @@ module GithubAuthentication
     def test_read_from_cache_is_not_expired
       cache = ObjectCache.new
 
-      cache.write('foo', 'bar', expires_in: 10 * 60) # 10 minutes
+      cache.write("foo", "bar", expires_in: 10 * 60) # 10 minutes
       Timecop.freeze(Time.now + 9 * 60) do
-        result = cache.read('foo')
+        result = cache.read("foo")
 
-        assert_equal 'bar', result
+        assert_equal "bar", result
       end
     end
 
     def test_read_from_cache_is_never_expired
       cache = ObjectCache.new
 
-      cache.write('foo', 'bar')
+      cache.write("foo", "bar")
       Timecop.freeze(Time.now + 100 * 60) do
-        result = cache.read('foo')
+        result = cache.read("foo")
 
-        assert_equal 'bar', result
+        assert_equal "bar", result
       end
     end
   end

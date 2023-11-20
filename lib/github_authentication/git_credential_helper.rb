@@ -13,14 +13,14 @@ module GithubAuthentication
     def handle_get
       description = parse_stdin
 
-      unless description['protocol'] == 'https' && description['host'] == 'github.com'
+      unless description["protocol"] == "https" && description["host"] == "github.com"
         warn("Unsupported description: #{description}")
         return 2
       end
 
       token = provider.token(seconds_ttl: min_cache_ttl)
       puts("password=#{token}")
-      puts('username=api')
+      puts("username=api")
 
       0
     end
@@ -35,13 +35,13 @@ module GithubAuthentication
     def parse_stdin
       # Credential description is written to STDIN in line delimited key=value form,
       # see https://git-scm.com/docs/git-credential#IOFMT
-      @stdin.each_line.map { |line| line.split('=', 2).map(&:strip) }.to_h
+      @stdin.each_line.map { |line| line.split("=", 2).map(&:strip) }.to_h
     end
 
     def provider
       @provider ||= Provider.new(
         generator: generator,
-        cache: Cache.new(storage: @storage || ObjectCache.new)
+        cache: Cache.new(storage: @storage || ObjectCache.new),
       )
     end
 
@@ -49,7 +49,7 @@ module GithubAuthentication
       @generator ||= Generator::App.new(
         pem: @pem,
         app_id: @app_id,
-        installation_id: @installation_id
+        installation_id: @installation_id,
       )
     end
   end
