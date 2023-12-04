@@ -40,7 +40,7 @@ module GithubAuthentication
     end
 
     def to_json
-      JSON.dump(token: @token, expires_at: @expires_at.iso8601)
+      JSON.generate(token: @token, expires_at: @expires_at.iso8601)
     end
 
     def to_s
