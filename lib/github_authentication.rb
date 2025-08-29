@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "github_authentication/version"
+require "github_authentication/environment"
 require "github_authentication/generator"
 require "github_authentication/provider"
 require "github_authentication/cache"
