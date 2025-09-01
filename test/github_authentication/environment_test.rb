@@ -6,6 +6,7 @@ require "github_authentication/environment"
 module GithubAuthentication
   class EnvironmentTest < Minitest::Test
     def setup
+      @original_env = ENV.to_h
       @org = "shopify"
       @env = Environment.new(org: @org)
 
@@ -21,8 +22,7 @@ module GithubAuthentication
     end
 
     def teardown
-      # Clean up any test files created
-      File.delete("test_keyfile.pem") if File.exist?("test_keyfile.pem")
+      ENV.replace(@original_env)
     end
 
     def test_org_instance_variable_is_used_for_env_var_resolution
@@ -34,19 +34,19 @@ module GithubAuthentication
     end
 
     def test_pem_uses_org_specific_env_var_when_available
-      ENV["SHOPIFY_GITHUB_APP_KEYFILE"] = "test_keyfile.pem"
-      create_test_keyfile("test_keyfile.pem")
-
-      result = @env.pem
-      assert_equal "test_key_content", result
+      create_test_keyfile("test_keyfile.pem") do |path|
+        ENV["SHOPIFY_GITHUB_APP_KEYFILE"] = path
+        result = @env.pem
+        assert_equal "test_key_content", result
+      end
     end
 
     def test_pem_falls_back_to_generic_env_var_when_org_specific_not_available
-      ENV["GITHUB_APP_KEYFILE"] = "test_keyfile.pem"
-      create_test_keyfile("test_keyfile.pem")
-
-      result = @env.pem
-      assert_equal "test_key_content", result
+      create_test_keyfile("test_keyfile.pem") do |path|
+        ENV["GITHUB_APP_KEYFILE"] = path
+        result = @env.pem
+        assert_equal "test_key_content", result
+      end
     end
 
     def test_pem_raises_error_when_neither_env_var_is_set
@@ -150,8 +150,11 @@ module GithubAuthentication
 
     private
 
-    def create_test_keyfile(path)
-      File.write(path, "test_key_content")
+    def create_test_keyfile(name, content: "test_key_content")
+      Tempfile.create(name) do |f|
+        File.write(f.path, content)
+        yield f.path
+      end
     end
   end
 end
