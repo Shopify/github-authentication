@@ -106,14 +106,14 @@ module GithubAuthentication
     def test_storage_uses_org_specific_env_var_when_available
       ENV["SHOPIFY_GITHUB_APP_CREDENTIAL_STORAGE_PATH"] = "/custom/storage/path"
 
-      result = @env.storage
+      result = @env.storage.cache_path
       assert_equal "/custom/storage/path", result
     end
 
     def test_storage_falls_back_to_generic_env_var_when_org_specific_not_available
       ENV["GITHUB_APP_CREDENTIAL_STORAGE_PATH"] = "/default/storage/path"
 
-      result = @env.storage
+      result = @env.storage.cache_path
       assert_equal "/default/storage/path", result
     end
 
