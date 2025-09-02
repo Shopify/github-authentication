@@ -4,8 +4,9 @@ require "active_support/core_ext/object/blank.rb"
 
 module GithubAuthentication
   class Environment
-    def initialize(org:)
+    def initialize(org:, env: ENV)
       @org = org.presence
+      @env = env
     end
 
     def pem
@@ -28,9 +29,9 @@ module GithubAuthentication
 
     def resolve(suffix)
       if @org
-        ENV["#{@org.upcase}_#{suffix}"] || ENV.fetch(suffix)
+        @env["#{@org.upcase}_#{suffix}"] || @env.fetch(suffix)
       else
-        ENV.fetch(suffix)
+        @env.fetch(suffix)
       end
     end
   end
