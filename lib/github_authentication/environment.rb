@@ -21,7 +21,7 @@ module GithubAuthentication
     end
 
     def storage
-      resolve("GITHUB_APP_CREDENTIAL_STORAGE_PATH")
+      ActiveSupport::Cache::FileStore.new(resolve("GITHUB_APP_CREDENTIAL_STORAGE_PATH"))
     end
 
     private
