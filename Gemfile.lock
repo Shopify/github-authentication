@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    github-authentication (1.1.0)
+    github-authentication (1.2.0)
       jwt (~> 2.2)
 
 GEM
@@ -76,6 +76,7 @@ GEM
       hashdiff (>= 0.4.0, < 2.0.0)
 
 PLATFORMS
+  arm64-darwin-21
   arm64-darwin-22
   arm64-darwin-23
   x86_64-linux
@@ -92,4 +93,4 @@ DEPENDENCIES
   webmock (~> 3.8)
 
 BUNDLED WITH
-   2.5.7
+   2.3.8
