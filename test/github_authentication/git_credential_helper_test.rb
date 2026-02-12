@@ -41,12 +41,16 @@ module GithubAuthentication
     private
 
     def helper
-      @helper ||= GitCredentialHelper.new(
-        pem: @pem,
-        app_id: @app_id,
-        installation_id: @installation_id,
-        description: @description,
-      )
+      @helper ||= begin
+        generator = Generator::App.new(
+          pem: @pem,
+          app_id: @app_id,
+          installation_id: @installation_id,
+        )
+        cache = Cache.new(storage: ObjectCache.new)
+        provider = Provider.new(generator: generator, cache: cache)
+        GitCredentialHelper.new(provider: provider, description: @description)
+      end
     end
 
     def stub_description(protocol: "https", host: "github.com", path: nil)
