@@ -22,9 +22,35 @@ Or install it yourself as:
 
 ## Usage
 
+The simplest way to get a GitHub App token is via `GithubAuthentication.provider`, which reads credentials from environment variables, handles JWT generation, token exchange, and caching:
+
 ```ruby
 require 'github-authentication'
 
+provider = GithubAuthentication.provider(org: "myorg")
+provider.token # => returns a cached or freshly generated token
+```
+
+This expects the following environment variables to be set (optionally prefixed with the org name):
+
+- `GITHUB_APP_ID` (or `MYORG_GITHUB_APP_ID`)
+- `GITHUB_APP_INSTALLATION_ID` (or `MYORG_GITHUB_APP_INSTALLATION_ID`)
+- `GITHUB_APP_KEYFILE` (or `MYORG_GITHUB_APP_KEYFILE`)
+
+If `GITHUB_APP_CREDENTIAL_STORAGE_PATH` is set, tokens are cached to disk via `ActiveSupport::Cache::FileStore`. Otherwise an in-memory cache is used.
+
+### Using with Octokit
+
+```ruby
+provider = GithubAuthentication.provider(org: "myorg")
+client = Octokit::Client.new(access_token: provider.token.to_s)
+```
+
+### Building a provider manually
+
+If you need more control over the cache or generator, you can wire up the components yourself:
+
+```ruby
 cache = GithubAuthentication::Cache.new(storage: GithubAuthentication::ObjectCache.new)
 generator = GithubAuthentication::Generator::App.new(pem: ENV['GITHUB_PEM'],
                                           installation_id: ENV['GITHUB_INSTALLATION_ID'],
@@ -35,65 +61,11 @@ provider.token
 provider.reset_token
 ```
 
-### Cache
-
-The cache takes a storage argument. You can pass an instance of an `ActiveSupport::Cache` implementation or use the provided 
-`GithubAuthentication::ObjectCache` if you are using it in a script.
-
-### Generator::App
-
-Generates a token for a GitHub app.
-
-```ruby
-GithubAuthentication::Generator::App.new(pem: ENV['GITHUB_PEM'],
-                                          installation_id: ENV['GITHUB_INSTALLATION_ID'],
-                                          app_id: ENV['GITHUB_APP_ID'])
-```
-
 ### Generator::Personal
 
 Mostly for testing purposes you can provide a github token that gets retrieved.
 ```ruby
 GithubAuthentication::Generator::Personal.new(github_token: ENV['GITHUB_TOKEN'])
-```
-
-## Example
-
-```ruby
-
-require "base64"
-
-module GitHub
-  APP_ID = "<APP_ID>"
-  INSTALLATION_ID = "<INSTALLATION_ID>"
-
-  class << self
-    def token
-      @token_provider ||= begin
-        if ENV['GITHUB_TOKEN']
-          storage = GithubAuthentication::ObjectCache.new
-          generator = GithubAuthentication::Generator::Personal.new(github_token: ENV['GITHUB_TOKEN'])
-        else
-          storage = ActiveSupport::Cache::RedisCacheStore.new
-          pem = Base64.decode64(ENV['GITHUB_PEM'])
-          generator = GithubAuthentication::Generator::App.new(pem: pem, installation_id: INSTALLATION_ID,
-                                                                 app_id: APP_ID)
-        end
-        cache = GithubAuthentication::Cache.new(storage: storage)
-        GithubAuthentication::Provider.new(generator: generator, cache: cache)
-      end
-      @token_provider.token
-    end
-
-    def client
-      if ENV['GITHUB_TOKEN']
-        Octokit::Client.new(access_token: token.to_s)
-      else
-        Octokit::Client.new(bearer_token: token.to_s)
-      end
-    end
-  end
-end
 ```
 
 ## Git credential helper
