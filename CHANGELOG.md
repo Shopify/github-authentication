@@ -2,6 +2,9 @@
 
 ...
 
+### 1.3.1
+- Fixed activesupport to be a runtime dependency, not a development dependency
+
 ### 1.3.0
 - Add `GithubAuthentication.provider(org:, env:)` as a high-level entrypoint for Ruby code that needs GitHub App tokens without manually wiring up Environment, Generator, Cache, and Provider
 - Simplify `GitCredentialHelper` to accept a `provider` directly
