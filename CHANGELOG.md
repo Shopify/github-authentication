@@ -2,7 +2,7 @@
 
 ...
 
-### 1.3.3
+### 1.3.4
 - Set JWT `iat` 60 seconds in the past to avoid clock drift issues with GitHub API
 
 ### 1.3.2
