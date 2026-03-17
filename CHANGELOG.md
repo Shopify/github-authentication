@@ -2,6 +2,9 @@
 
 ...
 
+### 1.3.3
+- Set JWT `iat` 60 seconds in the past to avoid clock drift issues with GitHub API
+
 ### 1.3.2
 - Add missing requires for active_support/cache to environment.rb
 
