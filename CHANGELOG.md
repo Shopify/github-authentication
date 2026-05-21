@@ -1,6 +1,6 @@
 ### Next
 
-...
+- Loosen `jwt` dependency constraint from `~> 2.2` to `>= 2.2, < 4` to allow `jwt` 3.x.
 
 ### 1.3.4
 - Set JWT `iat` 60 seconds in the past to avoid clock drift issues with GitHub API
