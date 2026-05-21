@@ -1,5 +1,6 @@
 ### Next
 
+### 1.3.5
 - Loosen `jwt` dependency constraint from `~> 2.2` to `>= 2.2, < 4` to allow `jwt` 3.x.
 
 ### 1.3.4
